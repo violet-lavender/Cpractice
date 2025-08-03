@@ -1,7 +1,24 @@
 #include "../CLibs/uthash/include/uthash.h"
 
+/*
+核心接口操作:
+HASH_ADD_INT(hashtable, key, tmp);  // 添加元素. 参数: 哈希表指针、key值、添加节点指针
+HASH_FIND_INT(hashtable, &key, tmp);    // 参数: 哈希表指针、key值地址、返回节点指针
+HASH_DEL(hashtable, tmp);   // 删除节点. 参数: 哈希表指针、删除节点指针
+HASH_ITER(hh, hashtable, cur, tmp);   // 遍历哈希表. 参数: hh、哈希表指针、当前节点指针、临时节点指针
+HASH_COUNT(hashtable);   // 获取元素个数. 参数: 哈希表指针
+HASH_SORT(hashtable, cmp);   // 排序. 参数: 哈希表指针、compare函数
+
+注意事项:
+1.哈希表必须初始化为 NULL
+2.UThash不自动处理键冲突
+3.添加后修改键会破坏哈希, 需要先删除, 修改, 再添加
+4.必须释放内存, HASH_DEL 后手动 free
+5.多线程不安全
+*/
+
 typedef struct {
-    int key;
+    int key;    // key、value 都可以是任意类型
     int value;  // 可以只有key没有value
     UT_hash_handle hh;
 } Hash;
