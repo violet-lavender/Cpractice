@@ -7,6 +7,10 @@ void qsort(void *base,
            size_t nmemb,
            size_t size,
            int (*compar)(const void *, const void *));
+qsort 是原地排序算法.
+字符串排序时, 字符串必须是可修改的:
+使用字符数组 char str[] = ...（栈内存）
+不能使用字符串字面量 char *str = "..."（只读内存）
 
 base: 指向待排序数组的首元素的指针（数组名）
 类型为 void*, 可接受任何类型的指针
