@@ -18,7 +18,6 @@ unsigned long int strtoul(
 错误情况:
     无有效数字 → 返回 0;
     值超出范围 → 返回 ULONG_MAX(定义在 <limits.h>), 并设置 errno 为 ERANGE.
-
 */
 
 int main()
