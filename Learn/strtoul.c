@@ -9,6 +9,7 @@ strtoul 函数用于将字符串转换为无符号长整型, 定义在头文件 
 
 unsigned long int strtoul(
     const char *str,     // 要转换的字符串. 指向待转换的字符串的指针, 跳过开头的空白字符(如空格、制表符等)
+                            可以用 指针 + 偏移量确定开始的位置, 如 char *s = '1334:789'; strtoul(s + 5, ,)就是从7开始
     char **endptr,       // 指向首个无效字符的指针. 二级指针, 用于存储首个无法转换的字符地址; 若传入 NULL,则不保存该信息
                         // 如 char *end;  strtoul("123abc", &end, 10);  则 end 指向 "abc" 的起始位置
     int base             // 进制基数 (0 或 2~36).0: 自动检测进制（前缀0x为十六进制，0为八进制, 否则十进制）;2~36: 显式指定进制.
@@ -23,6 +24,9 @@ unsigned long int strtoul(
 字符串带负号(如 "-1")会转换为无符号的补码值(即 ULONG_MAX)
 处理带符号数:
 long int strtoll(const char *str, char **endptr, int base)  用法与 strtoul 一致
+
+其他:
+int atoi(const char *str); 可以将字符串转换为十进制整数, 但是健壮性很差, 少用 
 */
 
 int main()
